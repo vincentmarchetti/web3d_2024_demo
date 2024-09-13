@@ -200,7 +200,8 @@
            */
 
             function fitscene() {
-                var rt = document.querySelector('x3d').runtime;
+                var x3dNode = document.querySelector('x3d') || document.querySelector('X3D')
+                var rt = x3dNode.runtime;
                 if (!rt.getActiveBindable('Viewpoint'))
                     rt.fitAll();
             }
@@ -241,7 +242,8 @@
 
             function updatex3d() {
                 editor.save();
-                var browser = document.querySelector('x3d').runtime
+                var x3dNode = document.querySelector('x3d') || document.querySelector('X3D')
+                var browser = x3dNode.runtime
                 var content = editor.getDoc().getValue();
                 var x3d = browser.createX3DFromString(content);
                 var title = "x3dom editor";
@@ -262,7 +264,7 @@
                         const frag = document.createRange().createContextualFragment(scriptHTML);
                         scriptNode.parentNode.replaceChild(frag, scriptNode);
                 });
-                var x3dNode = document.querySelector('x3d');
+                
                 x3dNode.removeAttribute("width");
                 x3dNode.removeAttribute("height");
                 //x3dNode.removeAttribute("style");
